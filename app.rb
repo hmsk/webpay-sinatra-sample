@@ -12,10 +12,14 @@ get '/' do
   haml :index
 end
 
+get '/partial' do
+  haml :partial
+end
+
 post '/purchase' do
   begin
     @charge = WebPay::Charge.create(currency: 'jpy', amount: WEBDB_PRESS_PRICE, card: params['webpay-token'])
-    haml :purchased
+    haml :purchased, locals: { buyer: params[:buyer] }
   rescue => e
     redirect to('/')
   end
