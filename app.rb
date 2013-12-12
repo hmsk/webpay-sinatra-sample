@@ -44,3 +44,19 @@ post '/subscribe' do
     redirect to('/')
   end
 end
+
+post '/renew' do
+  begin
+    Subscriber.all.each do |subscriber|
+      charge = WebPay::Charge.create(currency: 'jpy', amount: WEBDB_PRESS_PRICE, customer: subscriber.customer_id)
+      if charge.paid
+        subscriber.charge_count += 1
+        subscriber.save
+      end
+      sleep 1
+    end
+    redirect to('/subscribers')
+  rescue => e
+    redirect to('/')
+  end
+end

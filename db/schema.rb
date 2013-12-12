@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131212215610) do
+ActiveRecord::Schema.define(version: 20131212231550) do
 
   create_table "subscribers", force: true do |t|
-    t.string "customer_id"
+    t.string  "customer_id"
+    t.integer "charge_count", default: 0, null: false
   end
 
 end
