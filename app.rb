@@ -25,7 +25,7 @@ post '/purchase' do
   end
 end
 
-set :database, 'sqlite3:///development.sqlite3'
+require './env'
 class Subscriber < ActiveRecord::Base
   validates_presence_of :customer_id
 end
