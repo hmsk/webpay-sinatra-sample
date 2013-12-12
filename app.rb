@@ -24,3 +24,23 @@ post '/purchase' do
     redirect to('/')
   end
 end
+
+set :database, 'sqlite3:///development.sqlite3'
+class Subscriber < ActiveRecord::Base
+  validates_presence_of :customer_id
+end
+
+get '/subscribers' do
+  @subscribers = Subscriber.all
+  haml :subscribers
+end
+
+post '/subscribe' do
+  begin
+    customer = WebPay::Customer.create(card: params['webpay-token'])
+    Subscriber.create(customer_id: customer.id)
+    redirect to('/subscribers')
+  rescue => e
+    redirect to('/')
+  end
+end

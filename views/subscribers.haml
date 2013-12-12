@@ -1,0 +1,8 @@
+%h4 購読者
+%ul
+  - @subscribers.each do |subscriber|
+    %li= subscriber.customer_id
+
+%h4 新規登録
+%form{ action: '/subscribe', method: 'post' }
+  %script{ src: 'https://checkout.webpay.jp/v1/', class: 'webpay-button', :'data-text' => 'WEB+DB PRESS を定期購読者を追加する', :'data-submit-text' => 'このカードで翌号から購読する', :'data-key' => WEBPAY_PUBLIC_KEY }
