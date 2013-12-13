@@ -3,7 +3,6 @@ configure :development do
 end
 
 configure :production do
-  set :require_auth, true
   db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///localhost/mydb')
 
   ActiveRecord::Base.establish_connection(
