@@ -5,6 +5,7 @@ gem 'webpay'
 gem 'haml'
 gem 'rake'
 gem 'sinatra-activerecord'
+gem 'uuid'
 
 group :development do
   gem 'sqlite3'

@@ -38,7 +38,7 @@ end
 post '/subscribe' do
   begin
     customer = WebPay::Customer.create(card: params['webpay-token'])
-    Subscriber.create(customer_id: customer.id)
+    Subscriber.create(customer_id: customer.id, uuid: UUID.new.generate)
     redirect to('/subscribers')
   rescue => e
     redirect to('/')
@@ -48,9 +48,10 @@ end
 post '/renew' do
   begin
     Subscriber.all.each do |subscriber|
-      charge = WebPay::Charge.create(currency: 'jpy', amount: WEBDB_PRESS_PRICE, customer: subscriber.customer_id)
-      if charge.paid
+      charge = WebPay::Charge.create(currency: 'jpy', amount: WEBDB_PRESS_PRICE, customer: subscriber.customer_id, uuid: subscriber.uuid)
+      if charge.id != subscriber.last_charge_id
         subscriber.charge_count += 1
+        subscriber.last_charge_id = charge.id
         subscriber.save
       end
       sleep 1
