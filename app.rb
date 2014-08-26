@@ -2,7 +2,7 @@
 require 'bundler'
 Bundler.require
 
-WebPay.api_key = 'test_secret_eHn4TTgsGguBcW764a2KA8Yd'
+webpay = WebPay.new('test_secret_eHn4TTgsGguBcW764a2KA8Yd')
 WEBPAY_PUBLIC_KEY = 'test_public_19DdUs78k2lV8PO8ZCaYX3JT'
 WEBDB_PRESS_PRICE = 1554
 
@@ -18,7 +18,7 @@ end
 
 post '/purchase' do
   begin
-    @charge = WebPay::Charge.create(currency: 'jpy', amount: WEBDB_PRESS_PRICE, card: params['webpay-token'])
+    @charge = webpay.charge.create(currency: 'jpy', amount: WEBDB_PRESS_PRICE, card: params['webpay-token'])
     haml :purchased, locals: { buyer: params[:buyer] }
   rescue => e
     redirect to('/')
@@ -37,7 +37,7 @@ end
 
 post '/subscribe' do
   begin
-    customer = WebPay::Customer.create(card: params['webpay-token'])
+    customer = webpay.customer.create(card: params['webpay-token'])
     Subscriber.create(customer_id: customer.id, uuid: UUID.new.generate)
     redirect to('/subscribers')
   rescue => e
@@ -48,7 +48,7 @@ end
 post '/renew' do
   begin
     Subscriber.all.each do |subscriber|
-      charge = WebPay::Charge.create(currency: 'jpy', amount: WEBDB_PRESS_PRICE, customer: subscriber.customer_id, uuid: subscriber.uuid)
+      charge = webpay.charge.create(currency: 'jpy', amount: WEBDB_PRESS_PRICE, customer: subscriber.customer_id, uuid: subscriber.uuid)
       if charge.id != subscriber.last_charge_id
         subscriber.charge_count += 1
         subscriber.last_charge_id = charge.id

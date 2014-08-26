@@ -1,7 +1,7 @@
 %h3 WEB+DB PRESS vol.76を購入
 %form{ action: '/purchase', method: 'post' }
   %p 支払い情報
-  %script{ src: 'https://checkout.webpay.jp/v1/', class: 'webpay-button', :'data-text' => 'カード情報を登録する', :'data-submit-text' => '送信', :'data-partial' => "true", :'data-key' => WEBPAY_PUBLIC_KEY }
+  %script{ src: 'https://checkout.webpay.jp/v2/', class: 'webpay-button', :'data-text' => 'カード情報を登録する', :'data-submit-text' => '送信', :'data-partial' => "true", :'data-key' => WEBPAY_PUBLIC_KEY, :'data-lang' => 'ja' }
   %p 他の情報
   %input{ type: 'text', name: 'buyer', value: 'お名前' }
   %input{ type: 'submit', value: '送信する' }

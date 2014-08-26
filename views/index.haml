@@ -1,2 +1,2 @@
 %form{ action: '/purchase', method: 'post' }
-  %script{ src: 'https://checkout.webpay.jp/v1/', class: 'webpay-button', :'data-text' => 'WEB+DB PRESS vol.76 を購入する', :'data-submit-text' => '代金1554円をカードで支払う', :'data-key' => WEBPAY_PUBLIC_KEY }
+  %script{ src: 'https://checkout.webpay.jp/v2/', class: 'webpay-button', data: { text: 'WEB+DB PRESS vol.76 を購入する', :'submit-text' => '代金1554円をカードで支払う', key: WEBPAY_PUBLIC_KEY, lang: 'ja' } }
