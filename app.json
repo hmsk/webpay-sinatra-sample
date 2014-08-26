@@ -1,0 +1,7 @@
+{
+  "name": "WebPay Sinatra Sample",
+  "description": "Try WebPay API with Sinatra",
+  "repository": "https://github.com/hmsk/webpay-sinatra-sample",
+  "logo": "https://webpay.jp/assets/webpay_square_large.png",
+  "keywords": ["webpay", "sinatra", "ruby"]
+}
