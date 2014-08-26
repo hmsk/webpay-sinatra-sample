@@ -2,8 +2,8 @@
 require 'bundler'
 Bundler.require
 
-webpay = WebPay.new('test_secret_eHn4TTgsGguBcW764a2KA8Yd')
-WEBPAY_PUBLIC_KEY = 'test_public_19DdUs78k2lV8PO8ZCaYX3JT'
+webpay = WebPay.new(ENV['WEBPAY_SECRET_KEY'] || 'test_secret_eHn4TTgsGguBcW764a2KA8Yd')
+WEBPAY_PUBLIC_KEY = ENV['WEBPAY_PUBLIC_KEY'] || 'test_public_19DdUs78k2lV8PO8ZCaYX3JT'
 WEBDB_PRESS_PRICE = 1554
 
 set :haml, format: :html5

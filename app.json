@@ -1,9 +1,19 @@
 {
   "name": "WebPay Sinatra Sample",
-  "website": "https://webpay.jp/"
+  "website": "https://webpay.jp/",
   "description": "Try WebPay API with Sinatra",
   "repository": "https://github.com/hmsk/webpay-sinatra-sample",
   "logo": "https://webpay.jp/assets/webpay_square_large.png",
   "keywords": ["webpay", "sinatra", "ruby"],
   "success_url": "/",
+  "env": {
+    "WEBPAY_PUBLIC_KEY": {
+      "description": "Insert your public key for WebPay from https://webpay.jp/settings",
+      "value": "test_public_19DdUs78k2lV8PO8ZCaYX3JT"
+    },
+    "WEBPAY_SECRET_KEY": {
+      "description": "Insert your secret key for WebPay from https://webpay.jp/settings",
+      "value": "test_secret_eHn4TTgsGguBcW764a2KA8Yd"
+    }
+  }
 }
